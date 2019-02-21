@@ -38,6 +38,7 @@ flutter:
   assets:
     - assets/food.jpg
     - assets/food.1.jpg
+    - assets/background.jpg
   #  - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
@@ -49,6 +50,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
+  fonts:
+    - family: Oswald
+      fonts:
+        - asset: assets/Oswald-Bold.ttf
+          weight: 700
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

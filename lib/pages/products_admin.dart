@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_products_app/pages/products.dart';
 import 'package:flutter_products_app/pages/product_create.dart';
 import 'package:flutter_products_app/pages/product_list.dart';
 
 class ProductsAdminPage extends StatelessWidget {
+  final Function addProduct;
+  final Function deleteProduct;
+
+  ProductsAdminPage(this.addProduct, this.deleteProduct);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -17,9 +21,10 @@ class ProductsAdminPage extends StatelessWidget {
                 title: Text('Choose'),
               ),
               ListTile(
+                leading: Icon(Icons.shop),
                 title: Text('All Products'),
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, '/');
+                  Navigator.pushReplacementNamed(context, '/products');
                 },
               )
             ],
@@ -42,7 +47,7 @@ class ProductsAdminPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            ProductCreatePage(),
+            ProductCreatePage(addProduct),
             ProductListPage(),
           ],
         ),
