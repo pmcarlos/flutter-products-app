@@ -69,6 +69,9 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double _deviceWidth = MediaQuery.of(context).size.width;
+    final double _targetWidth =
+        _deviceWidth > 550.0 ? 500 : _deviceWidth * 0.95;
     return Scaffold(
       appBar: AppBar(
         title: Text('Easy List'),
@@ -80,20 +83,22 @@ class _AuthPageState extends State<AuthPage> {
         padding: EdgeInsets.all(20.0),
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _buildEmailTextField(),
-                SizedBox(height: 10.0),
-                _buildPasswordTextField(),
-                _buildAcceptSwitch(),
-                SizedBox(height: 10.0),
-                RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  textColor: Colors.white,
-                  child: Text('Login'),
-                  onPressed: () => _submitForm(),
-                ),
-              ],
+            child: Container(
+              width: _targetWidth,
+              child: Column(
+                children: <Widget>[
+                  _buildEmailTextField(),
+                  SizedBox(height: 10.0),
+                  _buildPasswordTextField(),
+                  _buildAcceptSwitch(),
+                  SizedBox(height: 10.0),
+                  RaisedButton(
+                    textColor: Colors.white,
+                    child: Text('Login'),
+                    onPressed: () => _submitForm(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
