@@ -27,7 +27,7 @@ class _ProductCreateState extends State<ProductCreatePage> {
   }
 
   Widget _buildDescriptionTextField() {
-    TextField(
+    return TextField(
       decoration: InputDecoration(labelText: 'Product Description'),
       maxLines: 4,
       onChanged: (String value) {

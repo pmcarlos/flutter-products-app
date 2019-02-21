@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_products_app/widgets/products/price_tag.dart';
 import 'package:flutter_products_app/widgets/products/product_card.dart';
 
 class Products extends StatelessWidget {
@@ -7,7 +6,7 @@ class Products extends StatelessWidget {
 
   Products(this.products);
 
-  Widget _buildProductItem(BuildContext context, int index) {
+  Widget _buildProductList() {
     Widget productCards;
     if (products.length > 0) {
       productCards = ListView.builder(
@@ -16,24 +15,11 @@ class Products extends StatelessWidget {
         itemCount: products.length,
       );
     } else {
-      productCards = Container();
-    }
-    return productCards;
-  }
-
-  Widget _buildProductList() {
-    Widget productList;
-    if (products.length > 0) {
-      productList = ListView.builder(
-        itemBuilder: _buildProductItem,
-        itemCount: products.length,
-      );
-    } else {
-      productList = Center(
+      productCards = Center(
         child: Text('No products found, please add some'),
       );
     }
-    return productList;
+    return productCards;
   }
 
   @override
