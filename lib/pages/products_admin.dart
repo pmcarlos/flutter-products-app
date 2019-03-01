@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_products_app/pages/product_create.dart';
-import 'package:flutter_products_app/pages/product_list.dart';
+
+import './product_edit.dart';
+import './product_list.dart';
 
 class ProductsAdminPage extends StatelessWidget {
   final Function addProduct;
+  final Function updateProduct;
   final Function deleteProduct;
+  final List<Map<String, dynamic>> products;
 
-  ProductsAdminPage(this.addProduct, this.deleteProduct);
+  ProductsAdminPage(this.addProduct, this.updateProduct, this.deleteProduct, this.products);
 
-  Widget _buildDrawer(BuildContext context) {
+  Widget _buildSideDrawer(BuildContext context) {
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -33,26 +36,26 @@ class ProductsAdminPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        drawer: _buildDrawer(context),
+        drawer: _buildSideDrawer(context),
         appBar: AppBar(
-          title: Text('Manage products'),
+          title: Text('Manage Products'),
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
                 icon: Icon(Icons.create),
-                text: 'Create product',
+                text: 'Create Product',
               ),
               Tab(
                 icon: Icon(Icons.list),
-                text: 'My products',
+                text: 'My Products',
               ),
             ],
           ),
         ),
         body: TabBarView(
           children: <Widget>[
-            ProductCreatePage(addProduct),
-            ProductListPage(),
+            ProductEditPage(addProduct: addProduct),
+            ProductListPage(products, updateProduct)
           ],
         ),
       ),

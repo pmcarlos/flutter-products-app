@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_products_app/product_manager.dart';
+
+import '../widgets/products/products.dart';
 
 class ProductsPage extends StatelessWidget {
   final List<Map<String, dynamic>> products;
 
   ProductsPage(this.products);
 
-  Widget _buildDrawer(BuildContext context) {
+  Widget _buildSideDrawer(BuildContext context) {
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -29,21 +30,17 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: _buildDrawer(context),
+      drawer: _buildSideDrawer(context),
       appBar: AppBar(
-        title: Text('Easy List'),
+        title: Text('EasyList'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
-              Icons.favorite,
-            ),
+            icon: Icon(Icons.favorite),
             onPressed: () {},
           )
         ],
       ),
-      body: ProductManager(
-        products,
-      ),
+      body: Products(products),
     );
   }
 }

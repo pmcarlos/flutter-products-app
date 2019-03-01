@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter_products_app/widgets/ui/title_default.dart';
+
+import 'package:flutter/material.dart';
+
+import '../widgets/ui_elements/title_default.dart';
 
 class ProductPage extends StatelessWidget {
   final String title;
   final String imageUrl;
-  final String description;
   final double price;
+  final String description;
 
   ProductPage(this.title, this.imageUrl, this.price, this.description);
 
@@ -15,27 +17,20 @@ class ProductPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          'San Andrés Cholula, Puebla',
-          style: TextStyle(
-            fontFamily: 'Oswald',
-            color: Colors.grey,
-          ),
+          'Union Square, San Francisco',
+          style: TextStyle(fontFamily: 'Oswald', color: Colors.grey),
         ),
         Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
-            child: Text(
-              '|',
-              style: TextStyle(
-                color: Colors.grey,
-              ),
-            )),
-        Text(
-          '\$$price',
-          style: TextStyle(
-            fontFamily: 'Oswald',
-            color: Colors.grey,
+          margin: EdgeInsets.symmetric(horizontal: 5.0),
+          child: Text(
+            '|',
+            style: TextStyle(color: Colors.grey),
           ),
         ),
+        Text(
+          '\$' + price.toString(),
+          style: TextStyle(fontFamily: 'Oswald', color: Colors.grey),
+        )
       ],
     );
   }
@@ -44,33 +39,33 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
+        print('Back button pressed!');
         Navigator.pop(context, false);
         return Future.value(false);
       },
       child: Scaffold(
-          appBar: AppBar(
-            title: Text(title),
-          ),
-          body: Center(
-            child: Column(
-              children: <Widget>[
-                Image.asset(imageUrl),
-                Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: TitleDefault(title),
-                ),
-                _buildAddressPriceRow(),
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    description,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(imageUrl),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              child: TitleDefault(title),
             ),
-          )),
+            _buildAddressPriceRow(),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                description,
+                textAlign: TextAlign.center,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_products_app/widgets/products/product_card.dart';
+
+import './product_card.dart';
 
 class Products extends StatelessWidget {
   final List<Map<String, dynamic>> products;
 
-  Products(this.products);
+  Products(this.products) {
+    print('[Products Widget] Constructor');
+  }
 
   Widget _buildProductList() {
     Widget productCards;
@@ -15,15 +18,14 @@ class Products extends StatelessWidget {
         itemCount: products.length,
       );
     } else {
-      productCards = Center(
-        child: Text('No products found, please add some'),
-      );
+      productCards = Container();
     }
     return productCards;
   }
 
   @override
   Widget build(BuildContext context) {
+    print('[Products Widget] build()');
     return _buildProductList();
   }
 }
